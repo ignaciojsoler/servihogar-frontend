@@ -48,7 +48,7 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
   return (
     <article className="w-full">
       <div className="flex flex-col gap-y-4">
-        <h4 className=" text-xl self-start font-semibold">Trabajadores</h4>
+        <h4 className=" text-3xl self-start font-semibold">Trabajadores</h4>
         {isLoading || !workers ? (
           <WorkerCardSkeleton />
         ) : (
