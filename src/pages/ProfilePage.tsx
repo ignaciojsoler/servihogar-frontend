@@ -44,12 +44,14 @@ const ProfilePage = () => {
 
   const handleGetFavoritesServices = async () => {
     if (!token || !user?.id) return null;
+    setIsLoading(true);
     const favoritesServices: AxiosResponse = await getUserFavoritesServices(
       token,
       user?.id
       );
     if (!favoritesServices || favoritesServices.status !== 200) return null;
     setFavorites(favoritesServices.data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
