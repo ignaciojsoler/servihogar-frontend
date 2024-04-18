@@ -1,11 +1,11 @@
-import plomeriaImg from "../assets/img/services/plomeria.png";
-import electricidadImg from "../assets/img/services/electricidad.png";
-import gasImg from "../assets/img/services/gas.png";
-import cerrajeriaImg from "../assets/img/services/cerrajeria.png";
-import limpiezaImg from "../assets/img/services/limpieza.png";
-import jardineriaImg from "../assets/img/services/jardineria.png";
-import mudanzasImg from "../assets/img/services/mudanzas.png";
-import carpinteriaImg from "../assets/img/services/carpinteria.png";
+import plomeriaImg from "../assets/img/services/plomeria.webp";
+import electricidadImg from "../assets/img/services/electricidad.webp";
+import gasImg from "../assets/img/services/gas.webp";
+import cerrajeriaImg from "../assets/img/services/cerrajeria.webp";
+import limpiezaImg from "../assets/img/services/limpieza.webp";
+import jardineriaImg from "../assets/img/services/jardineria.webp";
+import mudanzasImg from "../assets/img/services/mudanzas.webp";
+import carpinteriaImg from "../assets/img/services/carpinteria.webp";
 
 export const categoriesAttributes = [
     {
