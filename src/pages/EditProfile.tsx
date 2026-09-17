@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { User } from "../interfaces/interfaces";
-import { findUserAndUpdate, getUserById } from "../services/services";
+import {
+  findUserAndUpdate,
+  getUserById,
+  updateUserProfileImage,
+} from "../services/services";
 import { Loader } from "../components/Loader";
 import Input from "../components/Input";
 import { Button } from "../components/Button";
@@ -18,8 +22,6 @@ import {
   sortedProvincesList,
 } from "../helpers/selectLists";
 import defaultUserIcon from "../assets/icons/default-user.svg";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../config/firebaseConfig";
 import { AiOutlineEdit } from "react-icons/ai";
 import { updateUser } from "../store/userSlice";
 
@@ -37,8 +39,6 @@ const EditProfile = () => {
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
   const [updateProfileImage, setUpdateProfileImage] = useState<boolean>(false);
-
-  const storageRef = ref(storage, userDecodedToken?.id);
 
   const getUserDecodedToken = async () => {
     if (!token) return;
@@ -124,13 +124,20 @@ const EditProfile = () => {
   };
 
   const uploadImage = async () => {
-    if (!profileImage || !updateProfileImage) return null;
+    if (!profileImage || !updateProfileImage || !token || !userDecodedToken)
+      return null;
     try {
-      await uploadBytes(storageRef, profileImage).catch((err) => err);
-      const profileImageUrl = await getDownloadURL(ref(storageRef));
-      if (profileImageUrl) return profileImageUrl;
-    } catch(err) {
-      console.log(err)
+      const response = await updateUserProfileImage(
+        token,
+        userDecodedToken.id,
+        profileImage
+      );
+      if (response?.status === 200) return response.data.user.profileImage;
+      console.log(response?.data);
+      return null;
+    } catch (err) {
+      console.log(err);
+      return null;
     }
   };
 

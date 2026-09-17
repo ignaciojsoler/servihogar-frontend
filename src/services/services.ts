@@ -140,6 +140,31 @@ export const findUserAndUpdate = async (
   }
 };
 
+export const updateUserProfileImage = async (
+  token: string,
+  userId: string,
+  image: File
+): Promise<AxiosResponse> => {
+  try {
+    const formData = new FormData();
+    formData.append("image", image);
+    const response: AxiosResponse = await axios.put(
+      API_URL + `/user/${userId}/image`,
+      formData,
+      {
+        headers: {
+          Authorization: token,
+        },
+        timeout: 25000,
+      }
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
 export const getServices = async (queryParams?: {
   category?: string | null;
   take?: number | null;
