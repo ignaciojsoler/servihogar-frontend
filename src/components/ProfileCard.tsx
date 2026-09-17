@@ -47,6 +47,10 @@ const ProfileCard = ({
       >
         <img
           src={profileImage ?? defaultUserIcon}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = defaultUserIcon;
+          }}
           className={`object-cover drop-shadow-xl h-40 w-40 z-10 transition duration-150 ease-in rounded-full`}
           alt="User image"
           loading="lazy"

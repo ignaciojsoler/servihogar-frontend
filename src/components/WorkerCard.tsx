@@ -22,6 +22,10 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
       >
         <img
           src={profileImage ?? defaultUserIcon}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = defaultUserIcon;
+          }}
           className="drop-shadow-xl h-40 w-40 z-10 transition duration-150 ease-in rounded-full object-cover p-6"
           alt="User image"
           loading="lazy"

@@ -240,6 +240,10 @@ const EditProfile = () => {
           <label htmlFor="upload-file" className="relative">
             <img
               src={profileImageUrl ?? defaultUserIcon}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = defaultUserIcon;
+              }}
               className={`mx-auto my-6 object-cover drop-shadow-xl h-52 w-52 z-10 transition duration-150 ease-in overflow-hidden rounded-full $`}
               alt="User image"
               loading="lazy"
